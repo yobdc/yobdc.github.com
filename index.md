@@ -17,4 +17,5 @@ tagline:
       Posted on <a href="{{ post.url }}">{{ post.date | date_to_string }}</a>
     </section>
   </article>
+  <br />
 {% endfor %}
