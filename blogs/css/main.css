@@ -1,0 +1,23 @@
+.header {
+  padding: 35px 0 20px 0;
+  background-color: #f5f5f5;
+}
+.inner {
+  width: 700px;
+}
+.logo {
+  font-size: 22px;
+  font-weight: bolder;
+  display: inline-block;
+  padding: 7px 0;
+}
+.logo hr {
+  margin: 10px;
+  border-top: 2px solid #000;
+}
+.logo a {
+  color: #222;
+}
+.logo a:hover {
+  text-decoration: none;
+}
