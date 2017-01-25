@@ -35,6 +35,9 @@ const HomeView = Vue.extend({
 							post.url = "/#/post/" + post.date + "/" + post.title;
 							var tags = post.tags;
 							post.tags = [];
+							if (tags) {
+								tags.sort();
+							}
 							for (var j = 0; tags && j < tags.length; j++) {
 								var tag = tags[j];
 								if (tag) {
@@ -44,7 +47,6 @@ const HomeView = Vue.extend({
 									});
 								}
 							}
-							post.tags.sort();
 						}
 					}
 				}
@@ -101,6 +103,9 @@ const TagView = {
 							post.url = "/#/post/" + post.date + "/" + post.title;
 							that.posts.push(post);
 							post.tags = [];
+							if (tags) {
+								tags.sort();
+							}
 							for (var j = 0; tags && j < tags.length; j++) {
 								var t = tags[j];
 								if (t) {
@@ -110,7 +115,6 @@ const TagView = {
 									});
 								}
 							}
-							post.tags.sort();
 						}
 					}
 				}
