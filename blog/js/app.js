@@ -44,6 +44,7 @@ const HomeView = Vue.extend({
 									});
 								}
 							}
+							post.tags.sort();
 						}
 					}
 				}
@@ -109,6 +110,7 @@ const TagView = {
 									});
 								}
 							}
+							post.tags.sort();
 						}
 					}
 				}
