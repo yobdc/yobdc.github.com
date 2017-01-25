@@ -15,36 +15,46 @@ const HomeView = Vue.extend({
 			posts: []
 		}
 	},
-	created: function() {
-		var that = this;
-		$.get("/blog/posts.json", function(data) {
-			that.posts = data.posts;
-			for (var i = 0; data.posts && i < data.posts.length; i++) {
-				var post = data.posts[i];
-				if (post && post.file) {
-					var postArray = post.file.split("__");
-					if (postArray && postArray.length == 2) {
-						post.date = postArray[0];
-						post.title = postArray[1];
-						post.url = "/#/post/" + post.date + "/" + post.title;
-						var tags = post.tags;
-						post.tags = [];
-						for (var j = 0; tags && j < tags.length; j++) {
-							var tag = tags[j];
-							if (tag) {
-								post.tags.push({
-									name: tag,
-									url: '/#/tag/' + tag
-								});
+	watch: {
+		'$route': function(to, from) {
+			this.init();
+		}
+	},
+	methods: {
+		init: function() {
+			var that = this;
+			$.get("/blog/posts.json", function(data) {
+				that.posts = data.posts;
+				for (var i = 0; data.posts && i < data.posts.length; i++) {
+					var post = data.posts[i];
+					if (post && post.file) {
+						var postArray = post.file.split("__");
+						if (postArray && postArray.length == 2) {
+							post.date = postArray[0];
+							post.title = postArray[1];
+							post.url = "/#/post/" + post.date + "/" + post.title;
+							var tags = post.tags;
+							post.tags = [];
+							for (var j = 0; tags && j < tags.length; j++) {
+								var tag = tags[j];
+								if (tag) {
+									post.tags.push({
+										name: tag,
+										url: '/#/tag/' + tag
+									});
+								}
 							}
 						}
 					}
 				}
-			}
-			that.posts.sort(function(a, b) {
-				return a.date < b.date;
+				that.posts.sort(function(a, b) {
+					return a.date < b.date;
+				});
 			});
-		});
+		}
+	},
+	created: function() {
+		this.init();
 	}
 });
 const TagView = {
@@ -65,7 +75,7 @@ const TagView = {
 		}
 	},
 	watch: {
-		'$route' (to, from) {
+		'$route': function(to, from) {
 			this.init();
 		}
 	},
@@ -128,16 +138,26 @@ const PostView = Vue.extend({
 			}
 		}
 	},
+	watch: {
+		'$route': function(to, from) {
+			this.init();
+		}
+	},
+	methods: {
+		init: function() {
+			var that = this;
+			var params = that.$route.params;
+			that.post.title = params.title;
+			that.post.date = params.date;
+			$.get("/blog/md/" + params.date + "__" + params.title + ".md", function(data) {
+				var converter = new showdown.Converter();
+				that.post.html = converter.makeHtml(data);
+				$('.post-body').html(that.post.html);
+			});
+		}
+	},
 	created: function() {
-		var that = this;
-		var params = that.$route.params;
-		that.post.title = params.title;
-		that.post.date = params.date;
-		$.get("/blog/md/" + params.date + "__" + params.title + ".md", function(data) {
-			var converter = new showdown.Converter();
-			that.post.html = converter.makeHtml(data);
-			$('.post-body').html(that.post.html);
-		});
+		this.init();
 	}
 });
 
