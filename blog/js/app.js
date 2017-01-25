@@ -47,7 +47,7 @@ const HomeView = Vue.extend({
 		});
 	}
 });
-const TagView = Vue.extend({
+const TagView = {
 	template: '<div class="home">\
 	<div class="post row" v-for="post in posts">\
 	<div class="post-meta">{{post.date}}</div>\
@@ -64,44 +64,54 @@ const TagView = Vue.extend({
 			posts: []
 		}
 	},
-	created: function() {
-		var that = this;
-		var params = that.$route.params;
-		var tag = params.tag;
-		$.get("/blog/posts.json", function(data) {
-			that.posts = [];
-			for (var i = 0; data.posts && i < data.posts.length; i++) {
-				var post = data.posts[i];
-				var tags = post.tags;
-				if (!tags || tags.indexOf(tag) < 0) {
-					continue;
-				}
-				if (post && post.file) {
-					var postArray = post.file.split("__");
-					if (postArray && postArray.length == 2) {
-						post.date = postArray[0];
-						post.title = postArray[1];
-						post.url = "/#/post/" + post.date + "/" + post.title;
-						that.posts.push(post);
-						post.tags = [];
-						for (var j = 0; tags && j < tags.length; j++) {
-							var t = tags[j];
-							if (t) {
-								post.tags.push({
-									name: t,
-									url: '/#/tag/' + t
-								});
+	watch: {
+		'$route' (to, from) {
+			this.init();
+		}
+	},
+	methods: {
+		init: function() {
+			var that = this;
+			var params = that.$route.params;
+			var tag = params.tag;
+			$.get("/blog/posts.json", function(data) {
+				that.posts = [];
+				for (var i = 0; data.posts && i < data.posts.length; i++) {
+					var post = data.posts[i];
+					var tags = post.tags;
+					if (!tags || tags.indexOf(tag) < 0) {
+						continue;
+					}
+					if (post && post.file) {
+						var postArray = post.file.split("__");
+						if (postArray && postArray.length == 2) {
+							post.date = postArray[0];
+							post.title = postArray[1];
+							post.url = "/#/post/" + post.date + "/" + post.title;
+							that.posts.push(post);
+							post.tags = [];
+							for (var j = 0; tags && j < tags.length; j++) {
+								var t = tags[j];
+								if (t) {
+									post.tags.push({
+										name: t,
+										url: '/#/tag/' + t
+									});
+								}
 							}
 						}
 					}
 				}
-			}
-			that.posts.sort(function(a, b) {
-				return a.date < b.date;
+				that.posts.sort(function(a, b) {
+					return a.date < b.date;
+				});
 			});
-		});
+		}
+	},
+	created: function() {
+		this.init();
 	}
-});
+};
 const PostView = Vue.extend({
 	template: '<div class="post-content">\
 	<div class="post-title">{{post.title}}</div>\
@@ -141,7 +151,9 @@ const router = new VueRouter({
 	}, {
 		path: '/tag/:tag',
 		component: TagView
-	}]
+	}],
+	transitionOnLoad: true
+
 })
 
 const app = new Vue({
