@@ -27,18 +27,38 @@ const HomeView = Vue.extend({
 					}
 				}
 			}
+			that.posts.sort(function(a, b) {
+				return a.date < b.date;
+			});
 		});
 	}
 })
-const Post = Vue.extend({
-	template: '',
+const PostView = Vue.extend({
+	template: '<div class="post-content">\
+	<div class="post-title">{{post.title}}</div>\
+	<div class="post-meta">Posted on {{post.date}}</div>\
+	<div class="post-body"></div>\
+	</div>',
 	data: function() {
 		return {
-			posts: [{}]
+			post: {
+				title: '',
+				date: '',
+				html: '',
+				tags: []
+			}
 		}
 	},
 	created: function() {
 		var that = this;
+		var params = that.$route.params;
+		that.post.title = params.title;
+		that.post.date = params.date;
+		$.get("/blog/md/" + params.date + "__" + params.title + ".md", function(data) {
+			var converter = new showdown.Converter();
+			that.post.html = converter.makeHtml(data);
+			$('.post-body').html(that.post.html);
+		});
 	}
 });
 
@@ -48,7 +68,7 @@ const router = new VueRouter({
 		component: HomeView
 	}, {
 		path: '/post/:date/:title',
-		component: Post
+		component: PostView
 	}]
 })
 

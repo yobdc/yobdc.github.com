@@ -32,3 +32,20 @@
   text-decoration: none;
   color: #666;
 }
+.post-content {
+  margin: 80px 0 100px 0;
+}
+.post-content .post-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 400;
+}
+.post-content .post-meta {
+  text-align: center;
+  color: #999;
+  font-size: 12px;
+  padding: 10px;
+}
+.post-content .post-body {
+  padding: 50px 0 100px 0;
+}
