@@ -149,7 +149,10 @@ const PostView = Vue.extend({
 			var params = that.$route.params;
 			that.post.title = params.title;
 			that.post.date = params.date;
-			$.get("/blog/md/" + params.date + "__" + params.title + ".md", function(data) {
+			var url = "/blog/md/";
+			url += params.date + "__" + params.title;
+			url += "/" + params.date + "__" + params.title + ".md";
+			$.get(url, function(data) {
 				var converter = new showdown.Converter();
 				that.post.html = converter.makeHtml(data);
 				$('.post-body').html(that.post.html);
