@@ -186,9 +186,7 @@ const router = new VueRouter({
 	}, {
 		path: '/tag/:tag',
 		component: TagView
-	}],
-	transitionOnLoad: true
-
+	}]
 })
 
 const app = new Vue({

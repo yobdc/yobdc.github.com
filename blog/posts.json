@@ -5,5 +5,8 @@
 	}, {
 		"file": "2017-01-25__ie遭遇ajax缓存",
 		"tags": ["js", "ie"]
+	}, {
+		"file": "2017-01-26__vuejs相同router下跳转何时初始化组件",
+		"tags": ["js", "vuejs"]
 	}]
 }
