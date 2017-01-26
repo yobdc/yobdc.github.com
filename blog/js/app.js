@@ -23,6 +23,7 @@ const HomeView = Vue.extend({
 	methods: {
 		init: function() {
 			var that = this;
+			NProgress.start();
 			$.get("/blog/posts.json", function(data) {
 				that.posts = data.posts;
 				for (var i = 0; data.posts && i < data.posts.length; i++) {
@@ -53,6 +54,7 @@ const HomeView = Vue.extend({
 				that.posts.sort(function(a, b) {
 					return a.date < b.date;
 				});
+				NProgress.done();
 			});
 		}
 	},
@@ -87,6 +89,7 @@ const TagView = {
 			var that = this;
 			var params = that.$route.params;
 			var tag = params.tag;
+			NProgress.start();
 			$.get("/blog/posts.json", function(data) {
 				that.posts = [];
 				for (var i = 0; data.posts && i < data.posts.length; i++) {
@@ -121,6 +124,7 @@ const TagView = {
 				that.posts.sort(function(a, b) {
 					return a.date < b.date;
 				});
+				NProgress.done();
 			});
 		}
 	},
@@ -152,6 +156,7 @@ const PostView = Vue.extend({
 	methods: {
 		init: function() {
 			var that = this;
+			NProgress.start();
 			var params = that.$route.params;
 			that.post.title = params.title;
 			that.post.date = params.date;
@@ -162,6 +167,7 @@ const PostView = Vue.extend({
 				var converter = new showdown.Converter();
 				that.post.html = converter.makeHtml(data);
 				$('.post-body').html(that.post.html);
+				NProgress.done();
 			});
 		}
 	},
