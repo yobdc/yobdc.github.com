@@ -136,7 +136,7 @@ const PostView = Vue.extend({
 	template: '<div class="post-content">\
 	<div class="post-title">{{post.title}}</div>\
 	<div class="post-meta">Posted on {{post.date}}</div>\
-	<div class="post-body"></div>\
+	<div class="post-body" v-html="post.html"></div>\
 	</div>',
 	data: function() {
 		return {
@@ -166,7 +166,6 @@ const PostView = Vue.extend({
 			$.get(url, function(data) {
 				var converter = new showdown.Converter();
 				that.post.html = converter.makeHtml(data);
-				$('.post-body').html(that.post.html);
 				NProgress.done();
 			});
 		}
