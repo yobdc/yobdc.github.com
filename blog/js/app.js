@@ -5,7 +5,7 @@ const HomeView = Vue.extend({
 	<div class="post-title">\
 	<a v-bind:href="post.url">{{post.title}}</a>\
 	</div>\
-	<div class="post-tags">\
+	<div class="post-tags hidden-xs">\
 	<a v-bind:href="tag.url" v-for="tag in post.tags">#{{tag.name}}</a>\
 	</div>\
 	</div>\
@@ -69,7 +69,7 @@ const TagView = {
 	<div class="post-title">\
 	<a v-bind:href="post.url">{{post.title}}</a>\
 	</div>\
-	<div class="post-tags">\
+	<div class="post-tags hidden-xs">\
 	<a v-bind:href="tag.url" v-for="tag in post.tags">#{{tag.name}}</a>\
 	</div>\
 	</div>\
