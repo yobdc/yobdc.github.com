@@ -138,7 +138,7 @@ const PostView = Vue.extend({
 	<div class="post-title">{{post.title}}</div>\
 	<div class="post-meta">Posted on {{post.date}}</div>\
 	<div class="post-body" v-html="post.html"></div>\
-	<div class="ds-thread" v-bind:data-thread-key="post.title" v-bind:data-title="post.title" data-url="post.url"></div>\
+	<div class="ds-thread" v-bind:data-thread-key="post.title" v-bind:data-title="post.title" v-bind:data-url="post.url"></div>\
 	</div>\
 	',
 	data: function() {
@@ -163,6 +163,7 @@ const PostView = Vue.extend({
 			var params = that.$route.params;
 			that.post.title = params.title;
 			that.post.date = params.date;
+			that.post.url = window.location.host + '/post/' + that.post.title;
 			var url = "/blog/md/";
 			url += params.date + "__" + params.title;
 			url += "/" + params.date + "__" + params.title + ".md";
