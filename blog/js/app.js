@@ -138,7 +138,9 @@ const PostView = Vue.extend({
 	<div class="post-title">{{post.title}}</div>\
 	<div class="post-meta">Posted on {{post.date}}</div>\
 	<div class="post-body" v-html="post.html"></div>\
-	</div>',
+	</div>\
+	<div class="ds-thread" data-thread-key="{{post.title}}" data-title="{{post.title}}" data-url="请替换成文章的网址"></div>\
+	',
 	data: function() {
 		return {
 			post: {
