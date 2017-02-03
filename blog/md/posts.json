@@ -8,8 +8,5 @@
 	}, {
 		"file": "2017-01-26__vuejs相同router下跳转",
 		"tags": ["js", "vuejs"]
-	}, {
-		"file": "2017-02-03__tomcat部署去除context root",
-		"tags": ["tomcat"]
 	}]
 }

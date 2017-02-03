@@ -24,7 +24,7 @@ const HomeView = Vue.extend({
 		init: function() {
 			var that = this;
 			NProgress.start();
-			$.get("/blog/posts.json", function(data) {
+			$.get("/blog/md/posts.json", function(data) {
 				that.posts = data.posts;
 				for (var i = 0; data.posts && i < data.posts.length; i++) {
 					var post = data.posts[i];
@@ -90,7 +90,7 @@ const TagView = {
 			var params = that.$route.params;
 			var tag = params.tag;
 			NProgress.start();
-			$.get("/blog/posts.json", function(data) {
+			$.get("/blog/md/posts.json", function(data) {
 				that.posts = [];
 				for (var i = 0; data.posts && i < data.posts.length; i++) {
 					var post = data.posts[i];
