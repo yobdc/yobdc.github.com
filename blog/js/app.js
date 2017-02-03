@@ -1,3 +1,4 @@
+const blogJsonUrl = "/blog/md/posts.json?_=" + new Date().getTime();
 const HomeView = Vue.extend({
 	template: '<div class="home">\
 	<div class="post row" v-for="post in posts">\
@@ -24,7 +25,7 @@ const HomeView = Vue.extend({
 		init: function() {
 			var that = this;
 			NProgress.start();
-			$.get("/blog/md/posts.json", function(data) {
+			$.get(blogJsonUrl, function(data) {
 				that.posts = data.posts;
 				for (var i = 0; data.posts && i < data.posts.length; i++) {
 					var post = data.posts[i];
@@ -90,7 +91,7 @@ const TagView = {
 			var params = that.$route.params;
 			var tag = params.tag;
 			NProgress.start();
-			$.get("/blog/md/posts.json", function(data) {
+			$.get(blogJsonUrl, function(data) {
 				that.posts = [];
 				for (var i = 0; data.posts && i < data.posts.length; i++) {
 					var post = data.posts[i];
