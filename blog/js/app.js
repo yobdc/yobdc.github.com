@@ -138,8 +138,8 @@ const PostView = Vue.extend({
 	<div class="post-title">{{post.title}}</div>\
 	<div class="post-meta">Posted on {{post.date}}</div>\
 	<div class="post-body" v-html="post.html"></div>\
+	<div class="ds-thread" v-bind:data-thread-key="post.title" v-bind:data-title="post.title" data-url="请替换成文章的网址"></div>\
 	</div>\
-	<div class="ds-thread" data-thread-key="{{post.title}}" data-title="{{post.title}}" data-url="请替换成文章的网址"></div>\
 	',
 	data: function() {
 		return {
@@ -171,6 +171,15 @@ const PostView = Vue.extend({
 				that.post.html = converter.makeHtml(data);
 				NProgress.done();
 			});
+			window.duoshuoQuery = {
+				short_name: "yobdc"
+			};
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';
+			ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
 		}
 	},
 	created: function() {
