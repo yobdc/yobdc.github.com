@@ -199,7 +199,19 @@ const router = new VueRouter({
 		path: '/tag/:tag',
 		component: TagView
 	}]
-})
+});
+
+router.beforeEach(function(to, from, next) {
+	var defaultTitle = "小L's Notes";
+	if (to.params.title) {
+		document.title = defaultTitle + " - " + to.params.title;
+	} else if (to.params.tag) {
+		document.title = defaultTitle + " - " + to.params.tag;
+	} else {
+		document.title = defaultTitle;
+	}
+	next();
+});
 
 const app = new Vue({
 	router: router
