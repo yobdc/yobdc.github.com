@@ -11,5 +11,8 @@
 	}, {
 		"file": "2017-02-03__tomcat部署去除context-root",
 		"tags": ["tomcat"]
+	}, {
+		"file": "2017-02-13__浏览器嵌入pdf",
+		"tags": ["pdf", "ie"]
 	}]
 }
