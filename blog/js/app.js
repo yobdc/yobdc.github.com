@@ -1,3 +1,16 @@
+var strToHex = function(str) {
+	var hash = 0;
+	for (var i = 0; i < str.length; i++) {
+		hash = str.charCodeAt(i) + ((hash << 5) - hash);
+	}
+
+	var c = (hash & 0x00FFFFFF)
+		.toString(16)
+		.toUpperCase();
+
+	return "00000".substring(0, 6 - c.length) + c;
+}
+
 const blogJsonUrl = "/blog/md/posts.json?_=" + new Date().getTime();
 const HomeView = Vue.extend({
 	template: '<div class="home">\
@@ -7,7 +20,7 @@ const HomeView = Vue.extend({
 	<a v-bind:href="post.url">{{post.title}}</a>\
 	</div>\
 	<div class="post-tags hidden-xs">\
-	<a v-bind:href="tag.url" v-for="tag in post.tags">#{{tag.name}}</a>\
+	<a v-bind:href="tag.url" v-bind:style="{\'background-color\':tag.color}" v-for="tag in post.tags">#{{tag.name}}</a>\
 	</div>\
 	</div>\
 	</div>',
@@ -52,7 +65,8 @@ const HomeView = Vue.extend({
 								if (t) {
 									post.tags.push({
 										name: t,
-										url: '/#/tag/' + t
+										url: '/#/tag/' + t,
+										color: '#' + strToHex(t)
 									});
 								}
 							}
