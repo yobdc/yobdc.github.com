@@ -8,7 +8,8 @@ var strToHex = function(str) {
 		.toString(16)
 		.toUpperCase();
 
-	return "00000".substring(0, 6 - c.length) + c;
+	// return "0aa00".substring(0, 6 - c.length) + c;
+	return c.substring(0,3)+'abc';
 }
 
 const blogJsonUrl = "/blog/md/posts.json?_=" + new Date().getTime();
