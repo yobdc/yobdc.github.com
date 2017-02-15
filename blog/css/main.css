@@ -93,6 +93,9 @@ body {
   color: #fff;
   background-color: #ea6f5a;
 }
+.modal-header {
+  border-bottom: 0;
+}
 @media (min-width: 700px) {
   .inner {
     width: 700px;

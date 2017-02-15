@@ -91,7 +91,7 @@ const PostView = Vue.extend({
 	<div class="post-meta">Posted on {{post.date}}</div>\
 	<div class="post-body" v-html="post.html"></div>\
 	<div class="btn-pay-box">\
-	<button class="btn btn-pay">打赏</button>\
+	<button class="btn btn-pay" data-toggle="modal" data-target="#myModal">打赏</button>\
 	</div>\
 	<div class="ds-thread" v-bind:data-thread-key="post.title" v-bind:data-title="post.title" v-bind:data-url="post.url"></div>\
 	</div>\
