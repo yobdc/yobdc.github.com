@@ -9,7 +9,7 @@ var strToHex = function(str) {
 		.toUpperCase();
 
 	// return "0aa00".substring(0, 6 - c.length) + c;
-	return c.substring(0,3)+'abc';
+	return c.substring(0, 3) + 'abc';
 }
 
 const blogJsonUrl = "/blog/md/posts.json?_=" + new Date().getTime();
@@ -130,6 +130,11 @@ const PostView = Vue.extend({
 			window.duoshuoQuery = {
 				short_name: "yobdc"
 			};
+			
+			$('script').filter(function() {
+				return this.src.match(/embed/);
+			}).remove();
+
 			var ds = document.createElement('script');
 			ds.type = 'text/javascript';
 			ds.async = true;
