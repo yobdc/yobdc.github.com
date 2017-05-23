@@ -14,5 +14,8 @@
 	}, {
 		"file": "2017-02-13__浏览器嵌入pdf",
 		"tags": ["pdf", "ie"]
+	}, {
+		"file": "2017-05-23__zookeeper分布式配置",
+		"tags": ["zookeeper"]
 	}]
 }
