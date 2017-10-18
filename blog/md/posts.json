@@ -17,5 +17,8 @@
 	}, {
 		"file": "2017-05-23__zookeeper分布式配置",
 		"tags": ["zookeeper"]
+	}, {
+		"file": "2017-10-19__java线程cpu排查",
+		"tags": ["java"]
 	}]
 }
