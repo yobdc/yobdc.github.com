@@ -23,5 +23,8 @@
 	}, {
 		"file": "2018-05-09__mapreduce shuffle笔记",
 		"tags": ["大数据", "mapreduce"]
+	}, {
+		"file": "2018-05-09__spark运行模式",
+		"tags": ["大数据", "spark"]
 	}]
 }
