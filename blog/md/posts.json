@@ -20,5 +20,8 @@
 	}, {
 		"file": "2017-10-19__java线程cpu排查",
 		"tags": ["java"]
+	}, {
+		"file": "2018-05-09__mapreduce shuffle笔记",
+		"tags": ["大数据", "mapreduce"]
 	}]
 }
